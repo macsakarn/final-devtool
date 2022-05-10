@@ -1,6 +1,48 @@
-import React from "react";
+import {React, useState} from "react";
 
 export default function OTP() {
+  const [form,setForm] = useState(false)
+  const [phone,setPhone] = useState("")
+  const [otp,setOtp] = useState("")
+
+  var OtpForm = () => {
+    return(
+      <>
+      <h4>ระบุรหัส OTP ที่ได้รับทาง SMS</h4>
+        <p>รหัสผ่านมีอายุการใช้งาน ตลอดไป</p>
+        <div className="form" style={{ display: "flex", gap: 20 }}>
+          <input
+            type="text"
+            placeholder="XXXX"
+            style={{ width: "40%" }}
+            value={otp}
+            onChange={(val)=>{setOtp(val.target.value)}}
+          />
+          <div style={{ backgroundColor: "#b1d334", padding: "15px 45px" }} onClick={()=>sendOtp()}>
+            เข้าสู่ระบบ
+          </div>
+        </div>
+      </>
+    )
+  }
+  var getOtp = () =>{
+    var phoneno = /^\d{10}$/
+    if(!phoneno.test(phone)){
+      alert("หมายเลขโทรศัพท์ไม่ถูกต้อง (0XX-XXX-XXXX)")
+      setForm(false)
+    }else{
+      setForm(true)
+    }
+  }
+
+  var sendOtp = () =>{
+    var phoneno = /^\d{4}$/
+    if(!phoneno.test(otp)){
+      alert("* รหัส OTP ไม่ถูกต้องกรุณาลองใหม่")
+    }else{
+    }
+  }
+  
   return (
     <div
       style={{
@@ -35,11 +77,17 @@ export default function OTP() {
             type="text"
             placeholder="0XX-XXXXXXX"
             style={{ width: "40%" }}
+            value={phone}
+            onChange={(val)=>{setPhone(val.target.value)}}
           />
-          <div style={{ backgroundColor: "#b1d334", padding: "15px 45px" }}>
+          <div style={{ backgroundColor: "#b1d334", padding: "15px 45px" }} onClick={()=>getOtp()}>
             รับรหัส OTP ทาง SMS
           </div>
         </div>
+        {
+          form?<OtpForm/>:<></>
+        }
+        
         <h4 style={{ color: "#b1d334" }}>ข้อควรรู้ก่อนลงทะเบียนรับวัคซีน</h4>
         <ul>
           <li>กลุ่มอายุ 12-17 ปี</li>

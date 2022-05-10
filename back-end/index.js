@@ -13,7 +13,7 @@ mongoose.connect(configs.mongouri, {
 
 app.use(express.json())
 
-app.get('/test', async(req, res) => {
+app.get('/otp', async(req, res) => {
     try {
         let a = new BlogModel({ title : "DED" })
         await a.save()
