@@ -11,9 +11,9 @@
 4. กรอก OTP
 
 ### URL ต่างๆ
-Prometheus : http://localhost:9090/
-frontend : http://localhost:3001
-backend : http://localhost:4000
+Prometheus : http://localhost:9090/  
+frontend : http://localhost:3001  
+backend : http://localhost:4000  
 
 ### User Flow การจองคิววัคซีน
 1. ผู้ใช้เข้าหน้า Website
