@@ -4,7 +4,7 @@
 3. type `docker compose -f docker-compose-deploy.yml up -d`
 4. เปิด http://localhost:3001/
 
-### ข้อตอนการทดสอบหรือเข้าใช้งาน
+### ข้อตอนการทดสอบ OTP
 1. เปิด http://localhost:3001/
 2. กด "ลงทะเบียนจองคิว"
 3. กรอก เบอร์โทรศัฟ
