@@ -1,3 +1,14 @@
+### ขั้นตอนการใช้งาน
+1. Clone Project ```git clone https://github.com/macsakarn/final-devtool.git```
+2. type `docker compose -f docker-compose-build.yml build`
+3. type `docker compose -f docker-compose-deploy.yml up -d`
+4. เปิด http://localhost:3001/
+
+### ข้อตอนการทดสอบหรือเข้าใช้งาน
+1. เปิด http://localhost:3001/
+2. กด "ลงทะเบียนจองคิว"
+3. กรอก เบอร์โทรศัฟ
+4. กรอก OTP
 ### User Flow การจองคิววัคซีน
 
 1. ผู้ใช้เข้าหน้า Website
