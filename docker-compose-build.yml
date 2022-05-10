@@ -10,3 +10,9 @@ services:
     build: ./back-end
     ports:
       - 4000:4000
+      - 9464:9464
+  prometheus:
+    image: macsakarn/devtool-prometheus-final:1.0.0
+    build: ./prometheus
+    ports:
+      - 9090:9090
