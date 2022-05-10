@@ -31,6 +31,10 @@ stages {
            ehco 'Component testing'
        }
     }
-  
+    stage('Deploy') {
+       steps {
+           ehco 'Deploy'
+       }
+    }
   }
 }
