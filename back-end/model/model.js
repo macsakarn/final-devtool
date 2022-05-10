@@ -1,11 +1,14 @@
 const mongoose = require('mongoose')
 
-const BlogSchema = mongoose.Schema({
-    title : {
+const UserSchema = mongoose.Schema({
+    phone : {
         type : String
-    }
+    },
+    otp : {
+        type : String
+    },
 })
 
-const BlogModel = mongoose.model('Takai', BlogSchema)
+const UserModel = mongoose.model('users', UserSchema)
 
-module.exports = BlogModel
+module.exports = UserModel

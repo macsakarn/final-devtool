@@ -1,30 +1,41 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const configs = require('./configs/database.js');
-const BlogModel = require('./model/model.js');
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const configs = require("./configs/database.js");
+const UserModel = require("./model/model.js");
 const app = express();
 const port = 4000;
 
-mongoose.Promise = global.Promise 
+mongoose.Promise = global.Promise;
 mongoose.connect(configs.mongouri, {
-    useNewUrlParser : true,
-    useUnifiedTopology : true
-})
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
 
-app.get('/otp', async(req, res) => {
-    try {
-        let a = new BlogModel({ title : "DED" })
-        await a.save()
-        const result = await BlogModel.find()
-        res.send(result)
+app.post("/otp", async (req, res) => {
+  var chackUser = await UserModel.find({ phone: req.body.phone });
+  if (chackUser.length == 0) {
+    var val = Math.floor(1000 + Math.random() * 9000);
+    var newPhone = new UserModel({ phone: req.body.phone, otp: val });
+    await newPhone.save();
+    res.send({ otp: ""+val });
+  } else {
+    res.send({ otp: chackUser[0].otp });
+  }
+});
+
+app.post("/chackotp", async (req, res) => {
+    var chackUser = await UserModel.find(req.body);
+    if (chackUser.length == 0) {
+        res.send({text:"OTP ผิดครับพี่"});
+    } else {
+        res.send({text:"OTP ถูกแล้วครับพี่"});
     }
-    catch (err) {
-        err
-    }
-})
+  });
 
 app.listen(port, () => {
-    console.log(`run on port ${ port }`)
-})
+  console.log(`run on port ${port}`);
+});

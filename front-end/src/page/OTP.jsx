@@ -1,4 +1,5 @@
 import {React, useState} from "react";
+import axios from 'axios'
 
 export default function OTP() {
   const [form,setForm] = useState(false)
@@ -7,10 +8,10 @@ export default function OTP() {
 
   var OtpForm = () => {
     return(
-      <>
+      <div>
       <h4>ระบุรหัส OTP ที่ได้รับทาง SMS</h4>
         <p>รหัสผ่านมีอายุการใช้งาน ตลอดไป</p>
-        <div className="form" style={{ display: "flex", gap: 20 }}>
+        <div style={{ display: "flex", gap: 20 }}>
           <input
             type="text"
             placeholder="XXXX"
@@ -22,7 +23,7 @@ export default function OTP() {
             เข้าสู่ระบบ
           </div>
         </div>
-      </>
+      </div>
     )
   }
   var getOtp = () =>{
@@ -31,6 +32,15 @@ export default function OTP() {
       alert("หมายเลขโทรศัพท์ไม่ถูกต้อง (0XX-XXX-XXXX)")
       setForm(false)
     }else{
+      axios.post('http://localhost:4000/otp', {
+        phone
+      })
+      .then(function (response) {
+        setOtp(response.data.otp);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
       setForm(true)
     }
   }
@@ -40,6 +50,16 @@ export default function OTP() {
     if(!phoneno.test(otp)){
       alert("* รหัส OTP ไม่ถูกต้องกรุณาลองใหม่")
     }else{
+      axios.post('http://localhost:4000/chackotp', {
+        phone,
+        otp
+      })
+      .then(function (response) {
+        alert(response.data.text);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     }
   }
   
