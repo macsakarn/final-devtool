@@ -1,0 +1,12 @@
+version: '3'
+services:
+  frontend:
+    image: macsakarn/devtool-frontend-final:1.0.0
+    restart: always
+    ports:
+      - 3001:80
+  backend:
+    image: macsakarn/devtool-backend-final:1.0.0
+    restart: always
+    ports:
+      - 4000:4000
