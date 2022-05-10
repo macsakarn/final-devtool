@@ -9,8 +9,13 @@
 2. กด "ลงทะเบียนจองคิว"
 3. กรอก เบอร์โทรศัฟ
 4. กรอก OTP
-### User Flow การจองคิววัคซีน
 
+### URL ต่างๆ
+Prometheus : http://localhost:9090/
+frontend : http://localhost:3001
+backend : http://localhost:4000
+
+### User Flow การจองคิววัคซีน
 1. ผู้ใช้เข้าหน้า Website
 2. กดปุ่มจอง
 3. ใส่เบอร์มือถือ
